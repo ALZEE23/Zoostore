@@ -19,68 +19,6 @@
   </section>
 
 
-{{-- <!-- EXPLORE SECTION (Are you ready) -->
-<section class="explore-section">
-  <div class="explore-container">
-    <!-- Bagian gambar di sisi kiri -->
-    <div class="explore-images">
-      <img src="{{ asset('/assets/baby.jpeg') }}" alt="Sepatu 1" class="main-image">
-      <img src="{{ asset('/assets/baby.jpeg') }}" alt="Sepatu 2" class="main-image">
-    </div>
-
-    <!-- Bagian teks di sisi kanan -->
-    <div class="explore-text">
-      <h2>Are you ready <br> to <strong>ZOES STORE</strong></h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.</p>
-      <a href="#" class="explore-button">Explore</a>
-      
-      <!-- Thumbnails (opsional) -->
-      <div class="thumbnail-container">
-        <img src="{{ asset('/assets/baby.jpeg') }}" alt="Thumbnail 1">
-        <img src="{{ asset('/assets/baby.jpeg') }}" alt="Thumbnail 2">
-        <img src="{{ asset('/assets/baby.jpeg') }}" alt="Thumbnail 3">
-      </div>
-    </div>
-  </div>
-</section> --}}
-
-  {{-- <!-- BEST SELLING SECTION -->
-  <section class="best-selling">
-    <h2 class="title">— Best Selling —</h2>
-    <div class="products-container" id="bestsellingProducts">
-      <div class="product-card fade-in" data-category="bestselling" data-name="sepatu dewasa">
-        <span class="badge">Best Seller</span>
-        <img src="{{ asset('/assets/baby.jpeg')}}" alt="Sepatu Dewasa" class="product-image">
-        <h3>Sepatu Dewasa</h3>
-        <p class="price">₹ 3499.00 <span class="old-price">₹ 5999.00</span></p>
-        <div class="actions">
-          <button class="like">❤️</button>
-          <button class="buy">↗</button>
-        </div>
-      </div>
-      <div class="product-card fade-in" data-category="bestselling" data-name="sepatu sport">
-        <span class="badge">Best Seller</span>
-        <img src="{{ asset('/assets/baby.jpeg')}}" alt="Sepatu Sport" class="product-image">
-        <h3>Sepatu Sport</h3>
-        <p class="price">₹ 3999.00 <span class="old-price">₹ 6999.00</span></p>
-        <div class="actions">
-          <button class="like">❤️</button>
-          <button class="buy">↗</button>
-        </div>
-      </div>
-      <div class="product-card fade-in" data-category="bestselling" data-name="sepatu casual">
-        <span class="badge">Best Seller</span>
-        <img src="{{ asset('/assets/baby.jpeg')}}" alt="Sepatu Casual" class="product-image">
-        <h3>Sepatu Casual</h3>
-        <p class="price">₹ 2999.00 <span class="old-price">₹ 4999.00</span></p>
-        <div class="actions">
-          <button class="like">❤️</button>
-          <button class="buy">↗</button>
-        </div>
-      </div>
-    </div>
-  </section> --}}
-
   <!-- CUSTOMER REVIEW SECTION -->
   <section class="customer-review">
     <h2>— Customer Review —</h2>

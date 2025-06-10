@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class RiwayatController extends Controller
 {
-   public function index()
+    public function index()
 {
     // resources/views/riwayat/pemesanan/pesanan.blade.php
     return view('riwayat.pemesanan.pesanan');

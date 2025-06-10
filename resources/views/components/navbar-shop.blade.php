@@ -135,6 +135,7 @@
                 @auth
                     <a href="/shop" class="hover:text-gray-700">Shop</a>
                     <a href="/faqs" class="hover:text-gray-700">Faqs</a>
+                    <a href="/product_ratings" class="hover:text-gray-700">Rating</a>
                 @else
                     <a href="javascript:void(0)" onclick="showOopsDrawer()" class="hover:text-gray-700">Shop</a>
                     <a href="javascript:void(0)" onclick="showOopsDrawer()" class="hover:text-gray-700">Faqs</a>

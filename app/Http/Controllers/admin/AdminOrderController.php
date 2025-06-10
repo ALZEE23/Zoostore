@@ -11,13 +11,12 @@ class AdminOrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        // Ambil semua pesanan, termasuk relasi item dan produk
-        $orders = Order::with('user')->get();
-
-        return view('admin.orders.index', compact('orders'));
-    }
+    // AdminOrderController@index
+public function index()
+{
+    $orders = Order::with(['user', 'orderItems.product'])->latest()->get();
+    return view('admin.orders.index', compact('orders'));
+}
 
 
     /**

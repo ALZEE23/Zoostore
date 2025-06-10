@@ -36,7 +36,7 @@
                             </div>
                         @endif
 
-                        @if(session('error'))
+                        @if (session('error'))
                             <div class="alert alert-danger">
                                 {{ session('error') }}
                             </div>
@@ -51,8 +51,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Deskripsi</label>
-                                <textarea class="form-control" id="description" name="description" rows="3"
-                                    required></textarea>
+                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="code" class="form-label">Kode Produk</label>
@@ -94,63 +93,73 @@
 <script src="{{ asset('asset-landing-admin/js/scripts.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.getElementById('productForm').addEventListener('submit', async function (e) {
+    // Bagian dari script.js atau di dalam tag <script> di blade Anda
+    document.getElementById('productForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
         try {
             const formData = new FormData(this);
-            const response = await fetch('{{ route("staff.products.store") }}', {
+            const response = await fetch('{{ route('staff.products.store') }}', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: { // <--- PASTI ADA INI
+                    'Accept': 'application/json'
+                }
             });
 
-            const result = await response.json();
+            let result;
+            try {
+                result = await response.json();
+            } catch (jsonError) {
+                const textResponse = await response.text();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Kesalahan Server!',
+                    text: `Respons bukan JSON: ${response.status} ${response.statusText}. Konten: ${textResponse.substring(0, 200)}...`,
+                    footer: 'Cek log Laravel untuk detailnya.'
+                });
+                return; // Hentikan eksekusi jika respons bukan JSON
+            }
 
-            if (response.ok) {
-                alert(result.message);
-                window.location.href = '{{ route("staff.products.index") }}';
+            if (response.ok) { // response.ok adalah true untuk status 200-299
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: result.message || 'Produk berhasil ditambahkan!',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = result.redirect || '{{ route('staff.products.index') }}';
+                });
             } else {
-                throw new Error(result.message || 'Terjadi kesalahan');
+                // Tangani error validasi (status 422) atau error server (status 500)
+                if (response.status === 422 && result.errors) {
+                    let errorMessage = 'Data yang Anda masukkan tidak valid:<br>';
+                    for (const field in result.errors) {
+                        errorMessage += `- ${result.errors[field].join(', ')}<br>`;
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Validasi Gagal!',
+                        html: errorMessage.trim()
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: result.message || 'Terjadi kesalahan tidak dikenal.'
+                    });
+                }
             }
         } catch (error) {
-            alert(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error Jaringan/Klien!',
+                text: 'Tidak dapat terhubung ke server atau terjadi kesalahan pada klien: ' + error
+                    .message
+            });
         }
     });
-
-    document.getElementById('productForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    try {
-        const formData = new FormData(this);
-        const response = await fetch('{{ route("staff.products.store") }}', {
-            method: 'POST',
-            body: formData
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: result.message || 'Produk berhasil ditambahkan!',
-                timer: 2000,
-                showConfirmButton: false
-            }).then(() => {
-                window.location.href = '{{ route("staff.products.index") }}';
-            });
-        } else {
-            throw new Error(result.message || 'Terjadi kesalahan');
-        }
-    } catch (error) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error.message
-        });
-    }
-});
-
 </script>
 
 </html>

@@ -9,12 +9,11 @@ class Order extends Model
 {
     use HasFactory;
 
-    // Tentukan nama tabel jika berbeda
     protected $table = 'orders';
 
-    // Tentukan atribut yang boleh diisi (mass assignable)
     protected $fillable = [
         'user_id',
+        'order_id_midtrans', // Tambahkan ini
         'origin',
         'destination',
         'courier',
@@ -24,7 +23,8 @@ class Order extends Model
         'masukan',
         'alamat',
         'payment_photo',
-        'status'
+        'status',
+        'payment_method' // Pastikan ini juga ada jika belum
     ];
 
     protected $casts = [
@@ -32,15 +32,18 @@ class Order extends Model
         'weight' => 'integer',
     ];
 
-    // Relasi ke OrderItems
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
 
-    // Relasi ke User
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function productRatings()
+    {
+        return $this->hasMany(ProductRating::class);
     }
 }

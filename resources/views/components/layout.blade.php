@@ -50,9 +50,11 @@
         @auth
           <a href="/shop" class="hover:text-gray-700">Shop</a>
           <a href="/faqs" class="hover:text-gray-700">Faqs</a>
+          <a href="/product_ratings" class="hover:text-gray-700">Ratings</a>
         @else
           <a href="javascript:void(0)" onclick="showOopsDrawer()" class="hover:text-gray-700">Shop</a>
           <a href="javascript:void(0)" onclick="showOopsDrawer()" class="hover:text-gray-700">Faqs</a>
+          <a href="javascript:void(0)" onclick="showOopsDrawer()" class="hover:text-gray-700">Ratings</a>
         @endauth
       </nav>
       <div class="hidden md:flex items-center space-x-4">
@@ -81,7 +83,8 @@
             @guest
               <a href="{{ route('login') }}" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
                 <i class="fas fa-sign-in-alt"></i> Login
-              </a>
+              <a href="{{ route('login') }}" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
+                <i class="fas fa-sign-in-alt"></i> Login Admin
               <a href="{{ route('register') }}" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
                 <i class="fas fa-user-plus"></i> Register
               </a>

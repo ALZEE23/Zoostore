@@ -1,15 +1,9 @@
 <?php
 
 return [
-
-    'server_key' => env('MIDTRANS_SERVER_KEY', 'your-server-key-here'),
-
-    'client_key' => env('MIDTRANS_CLIENT_KEY', 'your-client-key-here'),
-
-    'is_production' => false,
-
-    'is_sanitized' => true,
-
-    'is_3ds' => true,
-
+    'serverKey' => env('MIDTRANS_SERVER_KEY'),
+    'clientKey' => env('MIDTRANS_CLIENT_KEY'),
+    'isProduction' => env('MIDTRANS_IS_PRODUCTION', false), // Tambahkan default false
+    'isSanitized' => env('MIDTRANS_IS_SANITIZED', true), // Tambahkan default true
+    'is3ds' => env('MIDTRANS_IS_3DS', true), // Tambahkan default true
 ];

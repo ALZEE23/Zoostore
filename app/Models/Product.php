@@ -27,4 +27,13 @@ class Product extends Model
         'price' => 'decimal:2',
         'status' => 'string',
     ];
+
+    // app/Models/Product.php
+public function ratings()
+{
+    // Asumsi: Product bisa memiliki banyak ProductRating
+    // Dan rating ini mungkin punya filter user_id dan order_id
+    return $this->hasMany(ProductRating::class, 'product_id'); 
+}
+
 }
